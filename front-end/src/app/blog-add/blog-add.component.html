@@ -1,0 +1,28 @@
+<div class="container">
+<h1>Add Post</h1>
+</div>
+
+  <div class="form-container">
+    <form (ngSubmit)="onSubmit()">
+      <div>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" [(ngModel)]="title" required>
+      </div>
+      <div>
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" [(ngModel)]="content" required></textarea>
+      </div>
+      <div>
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author" [(ngModel)]="author" required>
+      </div>
+      <button type="submit">Add Post</button>
+    </form>
+    <br>
+    <p style="cursor: pointer; text-align: center;" [routerLink]="['/']">go home</p>
+  </div>
+
+  <div *ngIf="loading" class="loading-container" [ngClass]="{'visible': loading}">
+    Loading...
+  </div>
+  

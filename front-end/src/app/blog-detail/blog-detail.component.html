@@ -1,0 +1,14 @@
+<div class="loading" *ngIf="loading">Loading...</div>
+
+<div class="item-details" *ngIf="!loading && item">
+  <h2 class="title">{{ item.title }}</h2>
+  <p class="author">auther : {{ item.author }}</p>
+  <p class="content">{{ item.content }}</p>
+  <div class="votes" style="display: flex; justify-content: space-between">
+    <p class="likes">{{ item.upvotes }} likes</p>
+    <p class="dislikes">{{ item.downvotes }} dislikes</p>
+  </div>
+  <p class="home-link" style="cursor: pointer" [routerLink]="['/']">Go Home</p>
+</div>
+
+<div class="not-found" *ngIf="!loading && !item">Item not found.</div>

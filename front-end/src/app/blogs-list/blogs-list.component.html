@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Home Page</h1>
+  <div class="search-container">
+    <input
+      type="text"
+      placeholder="search ..."
+      [(ngModel)]="searchTerm"
+      (keyup)="search()"
+    />
+    <button [routerLink]="['/add']">add blog</button>
+  </div>
+</div>
+
+<div *ngIf="items && items.length > 0; else notFound" class="blog-container">
+  <div *ngFor="let item of items" class="blog">
+    <div
+      class="card"
+      [ngStyle]="{
+        'border-color': item.upvotes >= item.downvotes ? 'green' : 'red'
+      }"
+    >
+      <h2>{{ item.title }}</h2>
+      <p>{{ item.author }}</p>
+      <p>{{ item.content | slice : 0 : 120 }}</p>
+      <p [routerLink]="['/detail', item._id]" class="readMore">read more</p>
+
+      <div class="votes-container">
+        <p>{{ item.upvotes }} like</p>
+        <p>{{ item.downvotes }} dislike</p>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #notFound>
+  <p class="not-found">Item not found.</p>
+</ng-template>
+
+<div *ngIf="loading" class="loading-container" [ngClass]="{ visible: loading }">
+  Loading...
+</div>
